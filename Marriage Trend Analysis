@@ -1,0 +1,106 @@
+# 💍 Marriage Trends and Patterns – SQL Analysis
+
+> A presentation on SQL queries used for analyzing marriage data  
+> 📄 Converted from: *marriage sql.pdf*
+
+---
+
+## 📌 Project Overview
+
+The primary goal of this project is to analyze **marriage patterns**, focusing on various socio-cultural and economic factors that influence marital outcomes.  
+
+We examined attributes such as:
+- Marriage type (love vs. arranged)
+- Education
+- Caste and religion
+- Parental approval
+- Dowry exchange
+- Marital satisfaction
+- Divorce rates
+
+Our goal is to uncover meaningful trends and relationships from this structured data.
+
+---
+
+## 🔍 Key SQL Queries
+
+### 1. Count of Inter-Caste Love Marriages
+> This query displays the number of love marriages that are inter-caste.
+
+```sql
+SELECT COUNT(*) 
+FROM marriages 
+WHERE marriage_type = 'love' AND caste_status = 'inter-caste';
+```
+
+---
+
+### 2. Count of Love Marriages That Are Not Inter-Caste
+
+```sql
+SELECT COUNT(*) 
+FROM marriages 
+WHERE marriage_type = 'love' AND caste_status != 'inter-caste';
+```
+
+---
+
+### 3. Inter-Religion Love Marriages (Age > 18)
+
+```sql
+SELECT COUNT(*) 
+FROM marriages 
+WHERE marriage_type = 'love' 
+  AND religion_status = 'inter-religion' 
+  AND age > 18;
+```
+
+---
+
+### 4. Average Age at Marriage by Gender
+
+```sql
+SELECT gender, ROUND(AVG(age_at_marriage), 1) AS average_age
+FROM marriages
+GROUP BY gender;
+```
+
+---
+
+### 5. Love Marriages Within Religion (Not Inter-Religion)
+
+```sql
+SELECT religion, COUNT(*) AS count
+FROM marriages
+WHERE marriage_type = 'love' 
+  AND religion_status != 'inter-religion'
+GROUP BY religion;
+```
+
+---
+
+### 6. Dowry Exchange by Religion
+
+```sql
+SELECT religion, COUNT(*) AS dowry_cases
+FROM marriages
+WHERE dowry = 'yes'
+GROUP BY religion;
+```
+
+---
+
+### 7. Average Number of Years Since Marriage by Gender
+
+```sql
+SELECT gender, ROUND(AVG(YEAR(CURRENT_DATE) - YEAR(marriage_year)), 1) AS avg_years
+FROM marriages
+GROUP BY gender;
+```
+
+---
+
+## 🙏 Thank You
+
+We hope this analysis contributes to a better understanding of the socio-cultural factors impacting marriage in our society.  
+Feel free to fork, use, or contribute to this repository!
