@@ -40,7 +40,7 @@ This analysis helps provide insight into how societal norms influence marriage o
 ## 📁 Files Included
 
 - `marriage_sql_queries.sql` – All SQL queries used in the project
-- `marriage_analysis.pdf` – PDF presentation summarizing key findings *(rename the uploaded file to this name on GitHub)*
+- `marriage_analysis.pdf` – PDF presentation summarizing key findings 
 - `README.md` – This file
 
 
